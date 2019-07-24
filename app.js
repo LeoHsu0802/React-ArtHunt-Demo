@@ -1,11 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import Test from './src/test'
 
-//建立一個DOM物件
-let element =<h1>Hello, yo!</h1>
+function app() {
+  return (
+    <div>
+      <Test />
+    </div>
+  )
+}
 
-//使用ReactDOM.render把剛建立的物件element插入目標DOM中
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
+export default app
