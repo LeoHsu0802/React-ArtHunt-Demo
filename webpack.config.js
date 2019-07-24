@@ -5,14 +5,18 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, './'),
     },
+    //將loader的設定寫在module的rules屬性中
     module: {
+        //rules的值是一個陣列可以存放多個loader物件
         rules: [
-            //第一個loader編譯JSX
-            { test: /.js$/, exclude: /node_modules/, use: { loader: 'babel-loader', options: { presets: ['@babel/preset-react'] } } },
-            //第二個loader編譯ES6
+            { test: /.js$/, exclude: /node_modules/, use: { loader: 'babel-loader', options: { presets: ['@babel/preset-react', '@babel/preset-env'] } } },
             { test: /.js$/, exclude: /node_modules/, use: { loader: 'babel-loader', options: { presets: ['@babel/preset-env'] } } },
-
-            { test: /.js$/, exclude: /node_modules/, use: { loader: 'babel-loader', options: { presets: ['@babel/preset-react','@babel/preset-env'] } } }
+            { test: /.js$/, exclude: /node_modules/, use: { loader: 'babel-loader', options: { presets: ['@babel/preset-react'] } } }
         ]
+    },
+    //增加一個給devserver的設定
+    devServer: {
+        //指定開啟port為9000
+        port: 9000
     }
 };
