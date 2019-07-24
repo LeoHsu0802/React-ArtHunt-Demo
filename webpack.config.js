@@ -1,0 +1,18 @@
+const path = require('path');
+module.exports = {
+    entry: ['./index.js', './app.js'],
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, './'),
+    },
+    module: {
+        rules: [
+            //第一個loader編譯JSX
+            { test: /.js$/, exclude: /node_modules/, use: { loader: 'babel-loader', options: { presets: ['@babel/preset-react'] } } },
+            //第二個loader編譯ES6
+            { test: /.js$/, exclude: /node_modules/, use: { loader: 'babel-loader', options: { presets: ['@babel/preset-env'] } } },
+
+            { test: /.js$/, exclude: /node_modules/, use: { loader: 'babel-loader', options: { presets: ['@babel/preset-react','@babel/preset-env'] } } }
+        ]
+    }
+};
