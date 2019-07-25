@@ -1,10 +1,10 @@
 import React from 'react'
-import Test from './src/test'
+import Header from './src/components/header/header'
 
 function app() {
   return (
     <div>
-      <Test />
+        <Header />
     </div>
   )
 }
