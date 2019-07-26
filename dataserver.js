@@ -6,16 +6,16 @@ const cors       = require('cors');
 server.use(cors());
 
 const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '830802',
-  database : 'art'
+  host     : '10.99.103.198',
+  user     : '354admin',
+  password : '354354354',
+  database : 'db354123456'
 });
 
 // Initialize the app
 const app = express();
 
-// https://expressjs.com/en/guide/routing.html
+// get data from database and error function
 app.get('/', function (req, res) {
     connection.connect();
 
