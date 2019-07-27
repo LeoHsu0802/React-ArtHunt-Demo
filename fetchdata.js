@@ -4,6 +4,7 @@ class fetchdata extends Component {
 //建立items來放資料，isLoaded判斷是否成功取到
   constructor(props) {
     super(props);
+<<<<<<< HEAD
     this.state ={
       items:[],
       isLoaded: false,
@@ -45,6 +46,28 @@ class fetchdata extends Component {
         )
       }
 
+=======
+    this.state = { posts: [] }
+    fetch('http://localhost:3000/')
+    .then((response) => {
+        console.log(response)
+        return response.json()
+        //return response.text()
+    }).then((myJson) => {
+        console.log(myJson)
+    })
+  }
+
+  render() {
+    return (
+      <div>
+      Hello World
+      <ul>
+        {this.state.posts.map(post => 
+        <h2>{post.title}</h2>}
+      </ul>
+    </div>);
+>>>>>>> 896a6b79b9d9fe381ef86318f7eb63338170d342
   }
 }
 
