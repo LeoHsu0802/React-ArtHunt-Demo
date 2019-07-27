@@ -1,29 +1,51 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react'
 
-class Posts extends Component {
+class fetchdata extends Component {
+//建立items來放資料，isLoaded判斷是否成功取到
   constructor(props) {
     super(props);
-    this.state = { posts: [] };
+    this.state ={
+      items:[],
+      isLoaded: false,
+    }
+  }
 
-    fetch('http://localhost:3000/')
-      .then(resposnse => response.json())
-      .then(posts => (this.setState({posts}))
-  } 
+  componentDidMount(){
+//使用fetch抓取商品資料
+    fetch('http://localhost:3000/', {mode: 'cors'})
+      .then(res => res.json())
+      .then(json =>{
+        this.setState({
+            isLoaded: true,
+            items: json,
+        })
+      });
+  }
+
   render() {
-    return (<div>
-      Hello World
-      <ul>
-        {this.state.posts.map(post => <li>
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
-        </li>}
-      </ul>
-    </div>);
+    //判斷式，若無取得資料則顯示Loading..若取得資料則返回
+      var{isLoaded, items} =this.state;
+      if(!isLoaded){
+        return<div>Loading...</div>;
+      }
+
+      else{
+        return (
+          <div>
+            <ul>
+               {items.map(item => (
+                 <li key={item.id}>
+                     Name: {item.name} |
+                     EndTime:{item.endtime}
+                     <img src ={item.image}></img>   
+                </li>
+               ))}
+            </ul>
+          </div>
+        )
+      }
+
   }
 }
 
-ReactDOM.render(
-  <Posts />,
-  mountNode
-);
+export default fetchdata
