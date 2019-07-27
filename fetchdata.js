@@ -45,30 +45,6 @@ class fetchdata extends Component {
           </div>
         )
       }
-
-=======
-    this.state = { posts: [] }
-    fetch('http://localhost:3000/')
-    .then((response) => {
-        console.log(response)
-        return response.json()
-        //return response.text()
-    }).then((myJson) => {
-        console.log(myJson)
-    })
-  }
-
-  render() {
-    return (
-      <div>
-      Hello World
-      <ul>
-        {this.state.posts.map(post => 
-        <h2>{post.title}</h2>}
-      </ul>
-    </div>);
->>>>>>> 896a6b79b9d9fe381ef86318f7eb63338170d342
-  }
 }
 
 export default fetchdata
