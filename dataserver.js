@@ -4,10 +4,10 @@ const mysql      = require('mysql');
 const app = express();
 
 const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '830802',
-  database : 'art'
+  host     : '10.99.103.198',
+  user     : '354admin',
+  password : '354354354',
+  database : 'db354'
 });
 //避免CORS同源政策阻擋，設為"*"表示允許所有地址呼叫
 let allowCrossDomain = function(req, res, next) {

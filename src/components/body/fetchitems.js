@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
+import './fetchitems.css'
 
-class fetchdata extends Component {
+class fetchitems extends Component {
 //建立items來放資料，isLoaded判斷是否成功取到
   constructor(props) {
     super(props);
-<<<<<<< HEAD
     this.state ={
       items:[],
       isLoaded: false,
@@ -29,22 +29,27 @@ class fetchdata extends Component {
       if(!isLoaded){
         return<div>Loading...</div>;
       }
-
       else{
         return (
-          <div>
-            <ul>
-               {items.map(item => (
-                 <li key={item.id}>
-                     Name: {item.name} |
-                     EndTime:{item.endtime}
-                     <img src ={item.image}></img>   
-                </li>
-               ))}
-            </ul>
-          </div>
+          <article className='itemContainer'>
+            {items.map(item =>(
+              <div key={item.id} className='itemBox'>
+                 <img className='itemImg' key={item.id} src ={item.img}></img>
+                 <h3 >{item.name}</h3>
+                 <p>{item.price.toLocaleString("en-US", { style: "currency", currency: "TWD" })}</p>
+                 <div>剩餘時間:{item.endtime}</div>
+                 <from>
+                    <input></input>
+                    <button>我要出價</button>
+                </from>
+              </div>  
+            ))}
+          </article>
+
+
         )
       }
+  }
 }
 
-export default fetchdata
+export default fetchitems

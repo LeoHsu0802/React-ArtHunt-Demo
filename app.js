@@ -1,12 +1,12 @@
 import React from 'react'
 import Header from './src/components/header/header'
-import Body from './src/components/body/body'
+import Fetchitems from './src/components/body/fetchitems'
 
 function app() {
   return (
     <div>
         <Header />
-        <Body />
+        <Fetchitems />
     </div>
   )
 }
