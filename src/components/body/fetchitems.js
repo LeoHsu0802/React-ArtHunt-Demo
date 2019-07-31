@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './fetchitems.css'
+import Countdown from './timecountdown'
 
 class fetchitems extends Component {
 //建立items來放資料，isLoaded判斷是否成功取到
@@ -37,7 +38,7 @@ class fetchitems extends Component {
                  <img className='itemImg' key={item.id} src ={item.img}></img>
                  <h3 >{item.name}</h3>
                  <p>{item.price.toLocaleString("en-US", { style: "currency", currency: "TWD" })}</p>
-                 <div>剩餘時間:{item.endtime}</div>
+                 <Countdown date={item.endtime}/>
                  <from>
                     <input></input>
                     <button>我要出價</button>
