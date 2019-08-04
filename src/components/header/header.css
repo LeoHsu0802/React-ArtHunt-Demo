@@ -1,8 +1,7 @@
 .header{
-    margin: 0px auto;
+    margin: auto;
     background: white;
-    padding-left: 50px;
-    align-content: center;
+    padding-left: 40px;
     width: 1200px;
     display: flex;
 }

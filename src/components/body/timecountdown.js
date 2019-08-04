@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
-/**
- * Note : 
- * If you're using react v 15.4 or less
- * You can directly import PropTypes from react instead. 
- * Refer to this : https://reactjs.org/warnings/dont-call-proptypes.html
- */
-
 class Countdown extends Component {
   constructor(props) {
     super(props);
@@ -86,34 +79,18 @@ class Countdown extends Component {
     return (
       <div className="Countdown">
         <span>還剩下  </span>
-        <span className="Countdown-col">
-          <span className="Countdown-col-element">
-              <strong>{this.addLeadingZeros(countDown.days)}</strong>
+
+              <a>{this.addLeadingZeros(countDown.days)}</a>
               <span>{countDown.days === 1 ? 'Day' : '日'}</span>
-          </span>
-        </span>
 
-        <span className="Countdown-col">
-          <span className="Countdown-col-element">
-            <strong>{this.addLeadingZeros(countDown.hours)}</strong>
+            <a>{this.addLeadingZeros(countDown.hours)}</a>
             <span>時</span>
-          </span>
-        </span>
 
-
-        <span className="Countdown-col">
-          <span className="Countdown-col-element">
-            <strong>{this.addLeadingZeros(countDown.min)}</strong>
+            <a>{this.addLeadingZeros(countDown.min)}</a>
             <span>分</span>
-          </span>
-        </span>
 
-        <span className="Countdown-col">
-          <span className="Countdown-col-element">
-            <strong>{this.addLeadingZeros(countDown.sec)}</strong>
+            <a>{this.addLeadingZeros(countDown.sec)}</a>
             <span>秒</span>
-          </span>
-        </span>
       </div>
     );
   }

@@ -1,13 +1,13 @@
 import React from 'react'
 import Header from './src/components/header/header'
-import Fetchitems from './src/components/body/fetchitems'
+import Body from './src/components/body/body'
 import Countdown from './src/components/body/timecountdown'
 
 function app() {
   return (
     <div>
         <Header />
-        <Fetchitems />
+        <Body />
     </div>
   )
 }
