@@ -9,24 +9,32 @@ class pricebidding extends Component {
             endpoint: "http://localhost:3000/",
             price : this.props.price
         }
-        this.bidhandler = this.bidhandler.bind(this)
+        this.bidhandler = this.bidhandler.bind(this);
     }
-
+    //出價處理
     bidhandler(e){
         e.preventDefault()
-        alert('assa')
- 
+        if(this.element.value > this.props.price){
+            console.log(this.element.value)
+            console.log(this.props.price)
+            this.props.bidhandler(this.state.price)
+            this.setState({
+                price: this.element.value
+            })   
+        }else{
+            alert('NO')
+        }
     }
 
 
     render() {
         return (
             <div>
-                 <span>{this.state.price.toLocaleString("en-US", { style: "currency", currency: "TWD" })}</span>
-                 <span>出價者:13</span>
-                 <form>
-                    <input type="number" onfocus="this.value=''"></input>
-                    <button type="submit" onSubmit={this.bidhandler}>我要出價</button>
+                 <span>NT${this.state.price}</span>
+                 <span>出價者:LEO</span>
+                 <form onSubmit={this.bidhandler}>
+                    <input ref={el => this.element = el} type="number" onfocus="this.value=''"></input>
+                    <button type="submit">我要出價</button>
                 </form> 
             </div>
         )

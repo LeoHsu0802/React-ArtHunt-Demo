@@ -14,6 +14,7 @@ class body extends Component {
     }
   }
 
+  
   componentDidMount(){
 //使用fetch抓取商品資料
     fetch('http://localhost:3000/', {mode: 'cors'})
@@ -24,6 +25,11 @@ class body extends Component {
             items: json,
         })
       });
+  }
+
+
+  bidhandler(price){
+    console.log(price)
   }
 
   render() {
@@ -40,7 +46,7 @@ class body extends Component {
                  <img className='itemImg' key={item.id} src ={item.img}></img>
                  <h3 >{item.name}</h3>
                  <Countdown date={item.endtime}/>
-                 <Pricebidding price={item.price}/>
+                 <Pricebidding price={item.price} bidhandler={this.bidhandler} />
               </div>  
             ))}
           </article>
