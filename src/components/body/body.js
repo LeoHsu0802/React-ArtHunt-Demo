@@ -45,7 +45,6 @@ class body extends Component {
             ))}
           </article>
 
-
         )
       }
   }
