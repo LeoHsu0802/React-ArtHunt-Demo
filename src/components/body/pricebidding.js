@@ -14,15 +14,13 @@ class pricebidding extends Component {
     //出價處理
     bidhandler(e){
         e.preventDefault()
-        if(this.element.value > this.props.price){
-            console.log(this.element.value)
-            console.log(this.props.price)
+        if(this.element.value > this.state.price){
             this.props.bidhandler(this.state.price)
             this.setState({
                 price: this.element.value
             })   
         }else{
-            alert('NO')
+            alert('出價需大於現價')
         }
     }
 
