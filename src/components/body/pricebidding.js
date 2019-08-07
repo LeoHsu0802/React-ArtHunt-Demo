@@ -14,6 +14,7 @@ class pricebidding extends Component {
     //出價處理
     bidhandler(e){
         e.preventDefault()
+        const socket = socketIOClient(this.state.endpoint);
         if(this.element.value > this.state.price){
             this.props.bidhandler(this.state.price)
             this.setState({
