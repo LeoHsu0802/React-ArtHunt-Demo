@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './body.css'
 import Countdown from './timecountdown'
-import webSocket from 'socket.io-client'
 import Pricebidding from './pricebidding';
 
 class body extends Component {
@@ -13,10 +12,9 @@ class body extends Component {
       isLoaded: false,
     }
   }
-
   
   componentDidMount(){
-//使用fetch抓取商品資料
+//使用fetch抓取商品資料，放置在Server 3000
     fetch('http://localhost:3000/', {mode: 'cors'})
       .then(res => res.json())
       .then(json =>{
