@@ -8,6 +8,10 @@ const mysql      = require('mysql');
 const port = 3000
 //連接MySQL的設定
 const DBconnection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : '830802',
+  database : 'art'
 });
 // //避免CORS同源政策阻擋，設為"*"表示允許所有地址呼叫，這邊設置客戶端的URL表示僅允許該端存取
 // let allowCrossDomain = function(req, res, next) {
