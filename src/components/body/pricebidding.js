@@ -13,10 +13,10 @@ class pricebidding extends Component {
         this.bidhandler = this.bidhandler.bind(this);
         this.enterprice = this.enterprice.bind(this);
     }
-
-    //輸入出價判斷
+    //客戶出價輸入判別
     enterprice(e){
         e.preventDefault()
+        //當客戶輸入出價時 onChange監聽並提醒，防止出價低於現價
         if(parseInt(this.element.value) < parseInt(this.state.price)){
             console.log("出價太低了!")
         }
@@ -26,16 +26,18 @@ class pricebidding extends Component {
     bidhandler(e){
         e.preventDefault()
         const socket = socketIOClient(this.state.endpoint);
-        //若出價大於現在最高價則更改價格，否則無法成功出價
+        // int(this.element.value)為用戶出價，int(this.state.price)為當前最高價 
+        //故出價高於當前最高價時則通過，否則出價失敗
         if(parseInt(this.element.value) > parseInt(this.state.price)){
+            //傳到Parent component body.js ----////
             this.props.bidhandler(this.state.price)
+            //出價成功則將出價設為當前價位
             this.setState({
                 price: this.element.value
             })
-            console.log(this.element.value)
-            console.log(this.state.id)
-            //將高於現價的出價送到Socket Server端
-            socket.emit('bidding', this.element.value) 
+
+            //bidding傳值 "成功的出價" 與 "該商品的id"
+            socket.emit('bidding', {price: this.element.value, id: this.state.id}) 
         }else{
             alert('出價需大於現價')
         }
@@ -44,15 +46,20 @@ class pricebidding extends Component {
     render() {
         //接收來自Socket Server端的價格並SetState
         const socket = socketIOClient(this.state.endpoint);
-        socket.on('bidding', (bidprice) => {
+        socket.on('bidding', (data) => {
+            console.log("this is id:",data.id)
+            console.log("this is bid price:",data.price)
+            if(this.state.id = data.id){
             this.setState({                
-                price:bidprice
+                price:data.price
             })
+         }
+         
         })
         return (
             <div>
-                <span>NT${this.state.price}</span>
-                <span>出價者:LEO</span>
+                <span>當前出價 NT${this.state.price} </span>
+                <span>出價者:</span>
 
                 <form onSubmit={this.bidhandler}>
                     <input ref={el => this.element = el} type="number" onChange={this.enterprice}></input>
