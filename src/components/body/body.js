@@ -24,8 +24,7 @@ class body extends Component {
         })
       });
   }
-
-
+  
   bidhandler(price){
     console.log(price)
   }
@@ -44,7 +43,7 @@ class body extends Component {
                  <img className='itemImg' key={item.id} src ={item.img}></img>
                  <h3 >{item.name}</h3>
                  <Countdown date={item.endtime}/>
-                 <Pricebidding price={item.price} bidhandler={this.bidhandler} />
+                 <Pricebidding price={item.price} id={item.id} bidhandler={this.bidhandler} />
               </div>  
             ))}
           </article>

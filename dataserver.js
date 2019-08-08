@@ -8,10 +8,10 @@ const mysql      = require('mysql');
 const port = 3000
 //連接MySQL的設定
 const DBconnection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '830802',
-  database : 'art'
+  host     : '10.99.103.198',
+  user     : '354admin',
+  password : '354354354',
+  database : 'db354'
 });
 // //避免CORS同源政策阻擋，設為"*"表示允許所有地址呼叫，這邊設置客戶端的URL表示僅允許該端存取
 // let allowCrossDomain = function(req, res, next) {
@@ -34,10 +34,6 @@ app.get('/', function (req, res) {
 io.on('connection', socket => {
   console.log('User connected')
 
-  socket.on('change color', (color) => {
-  console.log('Color Changed to: ', color)
-  io.sockets.emit('change color', color)
-  })
   //出價廣播
   socket.on('bidding',(price) => {
     console.log('Bidding NT$ ', price)
