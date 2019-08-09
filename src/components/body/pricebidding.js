@@ -23,6 +23,7 @@ class pricebidding extends Component {
     }
 
     //出價送出判斷處理
+
     bidhandler(e){
         e.preventDefault()
         const socket = socketIOClient(this.state.endpoint);
@@ -36,24 +37,24 @@ class pricebidding extends Component {
                 price: this.element.value
             })
 
-            //bidding傳值 "成功的出價" 與 "該商品的id"
-            socket.emit('bidding', {price: this.element.value, id: this.state.id}) 
+            //socket 傳值 "成功的出價" 與 "該商品的id"
+            socket.emit('bidding', {price: this.element.value, id: this.props.id}) 
         }else{
             alert('出價需大於現價')
         }
     }
-
+    
     render() {
         //接收來自Socket Server端的價格並SetState
         const socket = socketIOClient(this.state.endpoint);
         socket.on('bidding', (data) => {
             console.log("this is id:",data.id)
             console.log("this is bid price:",data.price)
-            if(this.state.id = data.id){
-            this.setState({                
-                price:data.price
-            })
-         }
+            if(this.props.id == data.id){
+                this.setState({                
+                    price:data.price
+                })
+             }
          
         })
         return (

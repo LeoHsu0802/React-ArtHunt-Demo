@@ -14,13 +14,13 @@ class body extends Component {
   }
   
   componentDidMount(){
-//使用fetch抓取商品資料，放置在Server 3000
+//使用fetch抓取商品資料，放在Item[]中並顯示在localhost:3000
     fetch('http://localhost:3000/', {mode: 'cors'})
       .then(res => res.json())
       .then(json =>{
         this.setState({
             isLoaded: true,
-            items: json,
+            items: json, 
         })
       });
   }
@@ -35,7 +35,7 @@ class body extends Component {
       if(!isLoaded){
         return<div>Loading...</div>;
       }
-      else{
+      else{ 
         return (
           <article className='itemContainer'>
             {items.map(item =>(
