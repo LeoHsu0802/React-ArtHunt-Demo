@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import './body.css'
-import Countdown from './timecountdown'
-import Pricebidding from './pricebidding';
+import './Body.css'
+import Countdown from './Countdown'
+import Pricebidding from './Pricebidding';
 
-class body extends Component {
+class Body extends Component {
 //建立items來放資料，isLoaded判斷是否成功取到
   constructor(props) {
     super(props);
@@ -12,7 +12,6 @@ class body extends Component {
       isLoaded: false,
     }
   }
-  
   componentDidMount(){
 //使用fetch抓取商品資料，放在Item[]中並顯示在localhost:3000
     fetch('http://localhost:3000/', {mode: 'cors'})
@@ -24,9 +23,9 @@ class body extends Component {
         })
       });
   }
-  
-  bidhandler(price){
-    console.log(price)
+//接收從child component(pricebidding.js)傳來出價成功的商品 price 與 id
+  bidhandler(price,id){
+    console.log(price,id)
   }
 
   render() {
@@ -38,14 +37,16 @@ class body extends Component {
       else{ 
         return (
           <article className='itemContainer'>
-            {items.map(item =>(
-              <div key={item.id} className='itemBox'>
-                 <img className='itemImg' key={item.id} src ={item.img}></img>
-                 <h3 >{item.name}</h3>
-                 <Countdown date={item.endtime}/>
-                 <Pricebidding price={item.price} id={item.id} bidhandler={this.bidhandler} />
-              </div>  
-            ))}
+              {items.map(item =>(
+                  <div key={item.id} className='itemBox'>
+                      <img className='itemImg' key={item.id} src ={item.img}></img>
+                      <div className='itemText'>
+                          <h3 id="itemName">{item.name}</h3>
+                          <Countdown date={item.endtime}/>
+                          <Pricebidding price={item.price} id={item.id} bidhandler={this.bidhandler} />
+                      </div>   
+                  </div>  
+              ))}
           </article>
 
         )
@@ -53,4 +54,4 @@ class body extends Component {
   }
 }
 
-export default body
+export default Body

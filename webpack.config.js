@@ -19,6 +19,7 @@ module.exports = {
     },
     //增加一個給devserver的設定
     devServer: {
+        historyApiFallback: true,
         //指定開啟port為9000
         port: 9000
     }

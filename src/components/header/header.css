@@ -1,7 +1,21 @@
 .header{
     margin: auto;
     background: white;
-    padding-left: 40px;
-    width: 1200px;
+    padding-left: 50px;
+    width: 1150px;
     display: flex;
+}
+
+.router-page{
+    font-size: 18px;
+    margin-left: 65%;
+    padding-top: 4.5%;
+}
+.router-page-name{
+    font-family: "微軟正黑體";
+    text-decoration:none;
+    color: orange;
+    margin: 7px;
+    font-weight: bold;
+    filter: drop-shadow(0px 0px 2px rgb(207, 163, 67))
 }

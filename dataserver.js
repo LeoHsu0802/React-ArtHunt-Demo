@@ -32,19 +32,18 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', socket => {
-  console.log('User connected')
+  //console.log('User connected')
 
   //出價接收
   socket.on('bidding',(data) => {
-  
-        console.log("Item ID:",data.id,"| New Bid NT$ ",data.price)
+    console.log("Item ID:",data.id,"| New Bid NT$ ",data.price)
 
     //出價廣播
     io.sockets.emit('bidding', data)
   })
 
   socket.on('disconnect', () => {
-    console.log('user disconnected')
+    //console.log('user disconnected')
   })
 });
 
