@@ -12,6 +12,7 @@ class Body extends Component {
       isLoaded: false,
       endid:''
     }
+    this.gameover=this.gameover.bind(this)
   }
   componentDidMount(){
 //使用fetch抓取商品資料，放在Item[]中並顯示在localhost:3000
@@ -30,7 +31,8 @@ class Body extends Component {
   }
 //接收從child (Countdown.js)傳入的結束商品ID(endid)並做處理
   gameover(endid){
-    console.log(endid)
+    this.setState({endid: endid});
+    console.log(this.state.endid)
   }
 
   render() {
@@ -48,7 +50,7 @@ class Body extends Component {
                       <div className='itemText'>
                           <h3 id="itemName">{item.name}</h3>
                           <Countdown date={item.endtime} id={item.id} gameover={this.gameover} />
-                          <Pricebidding price={item.price} id={item.id} bidhandler={this.bidhandler} />
+                          <Pricebidding price={item.price} id={item.id} endid={this.state.endid} bidhandler={this.bidhandler} />
                       </div>   
                   </div>  
               ))}

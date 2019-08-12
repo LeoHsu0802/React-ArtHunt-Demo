@@ -49,6 +49,7 @@ class Pricebidding extends Component {
     
 
     render() {
+        console.log(this.props.endid)
         const socket = socketIOClient(this.state.endpoint);
         socket.on('bidding', (data) => {
             console.log("this is id:",data.id)
@@ -64,6 +65,7 @@ class Pricebidding extends Component {
         return (
             <div>
                 <div className="now-price">
+                    <span></span>
                     <span id="now-high">NT$ {parseInt(this.state.price).toLocaleString()}</span>
                     <span className="now-price">出價者:</span>
                 </div>

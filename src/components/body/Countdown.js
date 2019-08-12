@@ -38,7 +38,7 @@ class Countdown extends Component {
       this.setState({
         endid:this.props.id
       })
-      //將結束商品的ID(endind)傳出到Parent(Body.js)做關閉出價處理
+      //將結束商品的ID(endind)傳出到Parent(Body.js)後再傳到Child(Pricebidding.js)做關閉出價處理
       this.props.gameover(this.state.endid)
     }
     }
