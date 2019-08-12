@@ -10,6 +10,7 @@ class Body extends Component {
     this.state ={
       items:[],
       isLoaded: false,
+      endid:''
     }
   }
   componentDidMount(){
@@ -23,9 +24,13 @@ class Body extends Component {
         })
       });
   }
-//接收從child component(pricebidding.js)傳來出價成功的商品 price 與 id
+//接收從child (Pricebidding.js)傳來出價成功的商品 price 與 id
   bidhandler(price,id){
     console.log(price,id)
+  }
+//接收從child (Countdown.js)傳入的結束商品ID(endid)並做處理
+  gameover(endid){
+    console.log(endid)
   }
 
   render() {
@@ -42,7 +47,7 @@ class Body extends Component {
                       <img className='itemImg' key={item.id} src ={item.img}></img>
                       <div className='itemText'>
                           <h3 id="itemName">{item.name}</h3>
-                          <Countdown date={item.endtime}/>
+                          <Countdown date={item.endtime} id={item.id} gameover={this.gameover} />
                           <Pricebidding price={item.price} id={item.id} bidhandler={this.bidhandler} />
                       </div>   
                   </div>  

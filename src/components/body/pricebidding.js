@@ -33,7 +33,7 @@ class Pricebidding extends Component {
         // int(this.element.value)為用戶出價，int(this.state.price)為當前最高價 
         //故出價高於當前最高價時則通過，否則出價失敗
         if(parseInt(this.state.bidprice) > parseInt(this.state.price)){
-            //出價成功傳到Parent component (body.js)並廣播出去
+            //將bidhandler的Fuction與參數傳出到Parent(Body.js)
             this.props.bidhandler(this.state.bidprice,this.props.id)
             //出價成功則將出價設為當前價位
             this.setState({
@@ -44,7 +44,9 @@ class Pricebidding extends Component {
         }else{
             alert('出價需大於現價')
         }
+        
     }
+    
 
     render() {
         const socket = socketIOClient(this.state.endpoint);
@@ -62,7 +64,7 @@ class Pricebidding extends Component {
         return (
             <div>
                 <div className="now-price">
-                    <span id="now-high">NT$ ${parseInt(this.state.price).toLocaleString()}</span>
+                    <span id="now-high">NT$ {parseInt(this.state.price).toLocaleString()}</span>
                     <span className="now-price">出價者:</span>
                 </div>
                 <form onSubmit={this.bidhandler}>
