@@ -43,13 +43,11 @@ class Pricebidding extends Component {
             socket.emit('bidding', {price: this.state.bidprice, id: this.props.id}) 
         }else{
             alert('出價需大於現價')
-        }
-        
+        }   
     }
     
 
     render() {
-        console.log(this.props.endid)
         const socket = socketIOClient(this.state.endpoint);
         socket.on('bidding', (data) => {
             console.log("this is id:",data.id)
@@ -61,6 +59,11 @@ class Pricebidding extends Component {
                 })
              }
         })
+
+        if (this.props.endid == this.props.id) {
+            var Nohide = true      
+        }
+    
     
         return (
             <div>
@@ -69,7 +72,7 @@ class Pricebidding extends Component {
                     <span id="now-high">NT$ {parseInt(this.state.price).toLocaleString()}</span>
                     <span className="now-price">出價者:</span>
                 </div>
-                <form onSubmit={this.bidhandler}>
+                {Nohide && <form onSubmit={this.bidhandler}>}
                     <input className="bid-price" 
                             value={this.state.bidprice} 
                             type="number" 
