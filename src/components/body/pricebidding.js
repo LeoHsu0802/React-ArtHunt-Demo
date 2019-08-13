@@ -16,7 +16,7 @@ class Pricebidding extends Component {
         }
         this.bidhandler = this.bidhandler.bind(this);
         this.enterprice = this.enterprice.bind(this);
-        this.timer = this.timer.bind(this);
+        this.renderer = this.renderer.bind(this);
     }
     //客戶出價輸入判別
     enterprice(e){
@@ -48,9 +48,9 @@ class Pricebidding extends Component {
             alert('出價需大於現價')
         }   
     }
-
+    
         // 倒數計時
-    timer({ days, hours, minutes, seconds, completed }) {
+    renderer({ days, hours, minutes, seconds, completed }) {
         if (completed) {
             console.log('OK')
         } else {
@@ -74,7 +74,7 @@ class Pricebidding extends Component {
              
          return (
             <div>
-                <Countdown  date={this.props.endtime} timer={this.timer}/>
+                <Countdown  date={this.props.endtime} renderer={this.renderer}/>
                 <div className="now-price">
                     <span></span>
                     <span id="now-high">NT$ {parseInt(this.state.price).toLocaleString()}</span>
