@@ -52,10 +52,10 @@ class Pricebidding extends Component {
         // 倒數計時
     renderer({ days, hours, minutes, seconds, completed }) {
         if (completed) {
-            console.log('OK')
+            return <span>此拍賣品已結束</span>
         } else {
             // Render a countdown
-            return <div>還剩下{days}:{hours}:{minutes}:{seconds}</div>
+            return <a>還剩下{days}日{hours}時{minutes}分{seconds}秒</a>
         }
     }
 
@@ -74,9 +74,9 @@ class Pricebidding extends Component {
              
          return (
             <div>
-                <Countdown  date={this.props.endtime} renderer={this.renderer}/>
                 <div className="now-price">
-                    <span></span>
+                    <Countdown  date={this.props.endtime} renderer={this.renderer}/>
+                    <br/> 
                     <span id="now-high">NT$ {parseInt(this.state.price).toLocaleString()}</span>
                     <span className="now-price">出價者:</span>
                 </div>
