@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Body.css'
-import Countdown from './Countdown'
 import Pricebidding from './Pricebidding';
 
 class Body extends Component {
@@ -10,9 +9,7 @@ class Body extends Component {
     this.state ={
       items:[],
       isLoaded: false,
-      endid:''
     }
-    this.gameover=this.gameover.bind(this)
   }
   componentDidMount(){
 //使用fetch抓取商品資料，放在Item[]中並顯示在localhost:3000
@@ -29,12 +26,6 @@ class Body extends Component {
   bidhandler(price,id){
     console.log(price,id)
   }
-//接收從child (Countdown.js)傳入的結束商品ID(endid)並做處理
-  gameover(endid){
-    this.setState({endid: endid});
-    console.log(this.state.endid)
-  }
-
   render() {
     //判斷式，若無取得資料則顯示Loading..若取得資料則返回
       var{isLoaded, items} =this.state;
@@ -49,8 +40,7 @@ class Body extends Component {
                       <img className='itemImg' key={item.id} src ={item.img}></img>
                       <div className='itemText'>
                           <h3 id="itemName">{item.name}</h3>
-                          <Countdown date={item.endtime} id={item.id} gameover={this.gameover} />
-                          <Pricebidding price={item.price} id={item.id} endid={this.state.endid} bidhandler={this.bidhandler} />
+                          <Pricebidding price={item.price} id={item.id} endtime={item.endtime} bidhandler={this.bidhandler} />
                       </div>   
                   </div>  
               ))}

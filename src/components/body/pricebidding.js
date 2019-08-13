@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import socketIOClient from "socket.io-client";
-import './Pricebidding.css'
+import Countdown from 'react-countdown-now';
+
+import './Pricebidding.css' 
 
 class Pricebidding extends Component {
     constructor(props) {
@@ -14,6 +16,7 @@ class Pricebidding extends Component {
         }
         this.bidhandler = this.bidhandler.bind(this);
         this.enterprice = this.enterprice.bind(this);
+        this.timer = this.timer.bind(this);
     }
     //客戶出價輸入判別
     enterprice(e){
@@ -45,7 +48,16 @@ class Pricebidding extends Component {
             alert('出價需大於現價')
         }   
     }
-    
+
+        // 倒數計時
+    timer({ days, hours, minutes, seconds, completed }) {
+        if (completed) {
+            console.log('OK')
+        } else {
+            // Render a countdown
+            return <div>還剩下{days}:{hours}:{minutes}:{seconds}</div>
+        }
+    }
 
     render() {
         const socket = socketIOClient(this.state.endpoint);
@@ -59,27 +71,23 @@ class Pricebidding extends Component {
                 })
              }
         })
-
-        if (this.props.endid == this.props.id) {
-            var Nohide = true      
-        }
-    
-    
-        return (
+             
+         return (
             <div>
+                <Countdown  date={this.props.endtime} timer={this.timer}/>
                 <div className="now-price">
                     <span></span>
                     <span id="now-high">NT$ {parseInt(this.state.price).toLocaleString()}</span>
                     <span className="now-price">出價者:</span>
                 </div>
-                {Nohide && <form onSubmit={this.bidhandler}>}
+                    <form onSubmit={this.bidhandler}>
                     <input className="bid-price" 
                             value={this.state.bidprice} 
                             type="number" 
                             onChange={this.enterprice}>             
                     </input>
                     <button className="bid-btn" type="submit">出價</button>
-                </form> 
+                </form>
             </div>
         )
     }
