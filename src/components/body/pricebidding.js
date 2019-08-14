@@ -3,6 +3,7 @@ import socketIOClient from "socket.io-client";
 import Countdown from 'react-countdown-now';
 import './Pricebidding.css' 
 
+
 class Pricebidding extends Component {
     constructor(props) {
         super(props)
@@ -12,7 +13,7 @@ class Pricebidding extends Component {
             price : this.props.price,
             bidprice : '',
             id : this.props.id,
-            showItem: true,
+            show: "t",
         }
         this.bidhandler = this.bidhandler.bind(this);
         this.enterprice = this.enterprice.bind(this);
@@ -28,8 +29,6 @@ class Pricebidding extends Component {
             console.log(this.props.id)
             console.log("出價太低了!")
         }
-
-        
     }
     
     //出價送出判斷處理
@@ -53,14 +52,16 @@ class Pricebidding extends Component {
     }
     
     // 倒數計時
-    renderer({ days, hours, minutes, seconds, completed }) {
+    renderer({ days, hours, minutes, seconds, completed ,show }) {
         if (completed) {
             return <span>此拍賣品已結束</span>
+
         } else {
             // Render a countdown
             return <a>還剩下{days}日{hours}時{minutes}分{seconds}秒</a>
         }
     }
+
 
     render() {
         const socket = socketIOClient(this.state.endpoint);
@@ -76,6 +77,7 @@ class Pricebidding extends Component {
         })
          return (
             <div>
+                {this.state.show &&<div>test</div>}
                 <div className="now-price">
                     <Countdown className="countdown" date={this.props.endtime} renderer={this.renderer}/>
                     <br/> 
@@ -83,7 +85,7 @@ class Pricebidding extends Component {
                     <span className="now-price">出價者:</span>
                 </div>
 
-                <form className="bidform" onSubmit={this.bidhandler}>
+                <form onSubmit={this.bidhandler}>
                     <input className="bid-price" 
                             value={this.state.bidprice} 
                             type="text"
