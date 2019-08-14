@@ -15,6 +15,10 @@
     break-inside: avoid;
 }
 
+.itemBox:hover{
+    filter: drop-shadow(5px 5px 5px rgba(116, 116, 116, 0.281))
+}
+
 .itemImg{
     max-width: 100%;
 }

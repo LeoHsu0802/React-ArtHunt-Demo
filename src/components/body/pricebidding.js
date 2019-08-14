@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import socketIOClient from "socket.io-client";
 import Countdown from 'react-countdown-now';
-
 import './Pricebidding.css' 
 
 class Pricebidding extends Component {
@@ -12,7 +11,8 @@ class Pricebidding extends Component {
             endpoint: "http://localhost:3000/",
             price : this.props.price,
             bidprice : '',
-            id : this.props.id
+            id : this.props.id,
+            showItem: true,
         }
         this.bidhandler = this.bidhandler.bind(this);
         this.enterprice = this.enterprice.bind(this);
@@ -23,10 +23,13 @@ class Pricebidding extends Component {
         e.preventDefault()
         this.setState({bidprice: e.target.value})
         //當客戶輸入出價時 onChange，並在輸入價格低於現價時做出提醒
+        
         if(parseInt(this.state.bidprice) < parseInt(this.state.price)){
             console.log(this.props.id)
             console.log("出價太低了!")
         }
+
+        
     }
     
     //出價送出判斷處理
@@ -45,11 +48,11 @@ class Pricebidding extends Component {
             //socket 傳值 "成功的出價" 與 "該商品的id"
             socket.emit('bidding', {price: this.state.bidprice, id: this.props.id}) 
         }else{
-            alert('出價需大於現價')
+            console.log('出價需大於現價')
         }   
     }
     
-        // 倒數計時
+    // 倒數計時
     renderer({ days, hours, minutes, seconds, completed }) {
         if (completed) {
             return <span>此拍賣品已結束</span>
@@ -71,22 +74,24 @@ class Pricebidding extends Component {
                 })
              }
         })
-             
          return (
             <div>
                 <div className="now-price">
-                    <Countdown  date={this.props.endtime} renderer={this.renderer}/>
+                    <Countdown className="countdown" date={this.props.endtime} renderer={this.renderer}/>
                     <br/> 
                     <span id="now-high">NT$ {parseInt(this.state.price).toLocaleString()}</span>
                     <span className="now-price">出價者:</span>
                 </div>
-                    <form onSubmit={this.bidhandler}>
+
+                <form className="bidform" onSubmit={this.bidhandler}>
                     <input className="bid-price" 
                             value={this.state.bidprice} 
-                            type="number" 
-                            onChange={this.enterprice}>             
+                            type="text"
+                            pattern="[0-9]*"
+                            onChange={this.enterprice}>    
                     </input>
                     <button className="bid-btn" type="submit">出價</button>
+                    <span>{this.state.bidprompt}</span>
                 </form>
             </div>
         )
