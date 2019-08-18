@@ -35,6 +35,7 @@ class Body extends Component {
       else{ 
         return (
           <article className='itemContainer'>
+              <button onClick={this.props.modalOpen}>Test</button>
               {items.map(item =>(
                   <div key={item.id} className='itemBox'>
                       <img className='itemImg' key={item.id} src ={item.img}></img>

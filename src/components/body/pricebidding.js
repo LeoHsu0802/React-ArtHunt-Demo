@@ -4,6 +4,7 @@ import Countdown from 'react-countdown-now';
 import './Pricebidding.css' 
 
 
+
 class Pricebidding extends Component {
     constructor(props) {
         super(props)
@@ -13,12 +14,14 @@ class Pricebidding extends Component {
             price : this.props.price,
             bidprice : '',
             id : this.props.id,
-            show: "t",
+            showBidform: true,
         }
         this.bidhandler = this.bidhandler.bind(this);
         this.enterprice = this.enterprice.bind(this);
         this.renderer = this.renderer.bind(this);
     }
+
+
     //客戶出價輸入判別
     enterprice(e){
         e.preventDefault()
@@ -30,7 +33,6 @@ class Pricebidding extends Component {
             console.log("出價太低了!")
         }
     }
-    
     //出價送出判斷處理
     bidhandler(e){
         e.preventDefault()
@@ -50,20 +52,18 @@ class Pricebidding extends Component {
             console.log('出價需大於現價')
         }   
     }
-    
     // 倒數計時
-    renderer({ days, hours, minutes, seconds, completed ,show }) {
+    renderer({ days, hours, minutes, seconds, completed}) {
         if (completed) {
             return <span>此拍賣品已結束</span>
-
         } else {
-            // Render a countdown
-            return <a>還剩下{days}日{hours}時{minutes}分{seconds}秒</a>
+            return <span className="countdown">還剩下{days}日{hours}時{minutes}分{seconds}秒</span>
         }
     }
 
 
     render() {
+
         const socket = socketIOClient(this.state.endpoint);
         socket.on('bidding', (data) => {
             console.log("this is id:",data.id)
@@ -73,11 +73,11 @@ class Pricebidding extends Component {
                 this.setState({                
                     price:data.price
                 })
-             }
+            }
         })
+
          return (
             <div>
-                {this.state.show &&<div>test</div>}
                 <div className="now-price">
                     <Countdown className="countdown" date={this.props.endtime} renderer={this.renderer}/>
                     <br/> 
@@ -85,7 +85,7 @@ class Pricebidding extends Component {
                     <span className="now-price">出價者:</span>
                 </div>
 
-                <form onSubmit={this.bidhandler}>
+                <form onSubmit={this.bidhandler}  className={this.props.shouldHide ? 'hidden' : ''}>
                     <input className="bid-price" 
                             value={this.state.bidprice} 
                             type="text"

@@ -9,15 +9,16 @@ export class header extends Component {
             <div className="header">
                 <img src={Logo} alt="Logo"/>
                 <div className="router-page">
-                    <Link to='./home' className="router-page-name">
+                    <Link to='./' className="router-page-name">
                         <a>Home </a>
                     </Link>
                     <Link to='./about' className="router-page-name">
                         <a>About </a>
                     </Link>
-                    <Link to='./' className="router-page-name">
-                        <a>Art </a>
+                    <Link to='./Login' className="router-page-name">
+                        <a>Login </a>
                     </Link>
+                    <span>Hi,</span>
                 </div>
             </div>
         )

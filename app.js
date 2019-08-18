@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from './src/components/header/Header'
 import Body from './src/components/body/Body'
-import Home from './src/components/Home/Home'
 import About from './src/components/About/About'
+import Login from './src/components/login/Login'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 function app() {
@@ -12,8 +12,8 @@ function app() {
             <Header />
             <Switch>
                 <Route exact path="/" component={Body} />
-                <Route exact path="/home" component={Home} />
                 <Route exact path="/about" component={About} />
+                <Route exact path="/Login" component={Login} />
             </Switch>
         </div>
     </Router>
