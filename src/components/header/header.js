@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Logo from '../../image/headlogo.png'
-import './Header.css'
 import { Link } from 'react-router-dom'
+import Login from '../login/Login'
+import './Header.css'
 
 export class header extends Component {
     render() {
@@ -18,7 +19,7 @@ export class header extends Component {
                     <Link to='./Login' className="router-page-name">
                         <a>Login </a>
                     </Link>
-                    <span>Hi,</span>
+                    <span>HI</span>
                 </div>
             </div>
         )

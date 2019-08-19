@@ -14,7 +14,7 @@
     margin: 15% 0% 0% 25%;
     width: 250px;
     height: 250px;
-    border: 1px solid orange;
+    border: 2px solid orange;
     box-shadow: 1px 1px 1px rgb(78, 77, 77);
     padding: 40px;
     left: 15%;
@@ -27,7 +27,7 @@
     height: 80px;
     border-radius: 50%;
     margin: 0 auto;
-    font-size: 42px;
+    font-size: 48px;
     line-height: 80px;
     text-align: center;
     font-family: sans-serif;
@@ -53,18 +53,18 @@
     box-shadow: 0 2px 2px #999;
 }
 
-.bid-btn:hover{
+.name-btn:hover{
     background:rgb(255, 160, 51);
 }
 
-.bid-btn:active {
+.name-btn:active {
     box-shadow: 0 1px 1px #666;
     transform: translateY(2px);
   }
 
   .name-input{
     outline: none;
-    margin: 30px 5px 0px 10px;
+    margin: 20px 5px 0px 10px;
     padding:5px;
     background:rgb(253, 251, 248);
     border-radius: 20px;
@@ -78,4 +78,12 @@
 
 .name-input:focus{
     border-color: rgb(255, 160, 51);
+}
+
+.warning{
+  font-family: "微軟正黑體";
+  color: orangered;
+  font: bold;
+  margin-left: 45px;
+
 }

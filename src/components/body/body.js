@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Body.css'
 import Pricebidding from './Pricebidding';
+import Login from '../login/Login'
 
 class Body extends Component {
 //建立items來放資料，isLoaded判斷是否成功取到
@@ -9,7 +10,9 @@ class Body extends Component {
     this.state ={
       items:[],
       isLoaded: false,
+      CustomerName:''
     }
+    this.hanelCusName=this.hanelCusName.bind(this)
   }
   componentDidMount(){
 //使用fetch抓取商品資料，放在Item[]中並顯示在localhost:3000
@@ -26,6 +29,14 @@ class Body extends Component {
   bidhandler(price,id){
     console.log(price,id)
   }
+//接收Login的客戶暱稱
+  hanelCusName(CusName){
+    this.setState({
+      CustomerName:CusName
+    })
+    console.log(this.state.CustomerName)
+  }
+
   render() {
     //判斷式，若無取得資料則顯示Loading..若取得資料則返回
       var{isLoaded, items} =this.state;
@@ -35,7 +46,6 @@ class Body extends Component {
       else{ 
         return (
           <article className='itemContainer'>
-              <button onClick={this.props.modalOpen}>Test</button>
               {items.map(item =>(
                   <div key={item.id} className='itemBox'>
                       <img className='itemImg' key={item.id} src ={item.img}></img>
@@ -45,6 +55,7 @@ class Body extends Component {
                       </div>   
                   </div>  
               ))}
+              <Login hanelCusName={this.hanelCusName}/>
           </article>
 
         )

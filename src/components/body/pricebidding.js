@@ -66,8 +66,8 @@ class Pricebidding extends Component {
 
         const socket = socketIOClient(this.state.endpoint);
         socket.on('bidding', (data) => {
-            console.log("this is id:",data.id)
-            console.log("this is bid price:",data.price)
+            //console.log("this is id:",data.id)
+            //console.log("this is bid price:",data.price)
             //接收最新出價，若商品ID相同則改變該商品最新價格
             if(this.props.id == data.id){
                 this.setState({                
