@@ -9,7 +9,6 @@ class Body extends Component {
     super(props);
     this.state ={
       items:[],
-      isLoaded: false,
       CustomerName:''
     }
     this.hanelCusName=this.hanelCusName.bind(this)
@@ -20,7 +19,6 @@ class Body extends Component {
       .then(res => res.json())
       .then(json =>{
         this.setState({
-            isLoaded: true,
             items: json, 
         })
       });
@@ -29,6 +27,7 @@ class Body extends Component {
   bidhandler(price,id){
     console.log(price,id)
   }
+  
 //接收Login的客戶暱稱
   hanelCusName(CusName){
     this.setState({
@@ -39,11 +38,7 @@ class Body extends Component {
 
   render() {
     //判斷式，若無取得資料則顯示Loading..若取得資料則返回
-      var{isLoaded, items} =this.state;
-      if(!isLoaded){
-        return<div>Loading...</div>;
-      }
-      else{ 
+      const{items} =this.state;
         return (
           <article className='itemContainer'>
               {items.map(item =>(
@@ -61,6 +56,5 @@ class Body extends Component {
         )
       }
   }
-}
 
 export default Body
