@@ -37,7 +37,6 @@ export class Login extends Component {
             })
         }else{
         e.preventDefault()
-        console.log(this.state.username)
         //props傳出function與值到Body
         this.props.hanelCusName(this.state.username)
         this.closeModal()

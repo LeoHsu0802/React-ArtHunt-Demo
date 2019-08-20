@@ -9,7 +9,7 @@ class Body extends Component {
     super(props);
     this.state ={
       items:[],
-      CustomerName:''
+      CustomerName:'',
     }
     this.hanelCusName=this.hanelCusName.bind(this)
   }
@@ -33,7 +33,6 @@ class Body extends Component {
     this.setState({
       CustomerName:CusName
     })
-    console.log(this.state.CustomerName)
   }
 
   render() {
@@ -46,11 +45,17 @@ class Body extends Component {
                       <img className='itemImg' key={item.id} src ={item.img}></img>
                       <div className='itemText'>
                           <h3 id="itemName">{item.name}</h3>
-                          <Pricebidding price={item.price} id={item.id} endtime={item.endtime} bidhandler={this.bidhandler} />
+                          <Pricebidding
+                          price={item.price} 
+                          id={item.id} 
+                          endtime={item.endtime} 
+                          bidhandler={this.bidhandler} 
+                          CustomerName={this.state.CustomerName}
+                          />
                       </div>   
                   </div>  
               ))}
-              <Login hanelCusName={this.hanelCusName}/>
+              <Login hanelCusName={this.hanelCusName} />
           </article>
 
         )

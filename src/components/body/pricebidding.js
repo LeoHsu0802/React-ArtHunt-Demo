@@ -15,6 +15,7 @@ class Pricebidding extends Component {
             bidprice : '',
             id : this.props.id,
             showBidform: true,
+            CustomerName:''
         }
         this.bidhandler = this.bidhandler.bind(this);
         this.enterprice = this.enterprice.bind(this);
@@ -46,8 +47,8 @@ class Pricebidding extends Component {
             this.setState({
                 price: this.state.bidprice
             })
-            //socket 傳值 "成功的出價" 與 "該商品的id"
-            socket.emit('bidding', {price: this.state.bidprice, id: this.props.id}) 
+            //socket 傳值 "成功的出價" 與 "該商品的id" 與 "出價者"
+            socket.emit('bidding', {price: this.state.bidprice, id: this.props.id ,user: this.props.CustomerName}) 
         }else{
             console.log('出價需大於現價')
         }   
@@ -63,7 +64,6 @@ class Pricebidding extends Component {
 
 
     render() {
-
         const socket = socketIOClient(this.state.endpoint);
         socket.on('bidding', (data) => {
             //console.log("this is id:",data.id)
@@ -72,6 +72,9 @@ class Pricebidding extends Component {
             if(this.props.id == data.id){
                 this.setState({                
                     price:data.price
+                })
+                this.setState({
+                    CustomerName:data.user
                 })
             }
         })
@@ -82,7 +85,7 @@ class Pricebidding extends Component {
                     <Countdown className="countdown" date={this.props.endtime} renderer={this.renderer}/>
                     <br/> 
                     <span id="now-high">NT$ {parseInt(this.state.price).toLocaleString()}</span>
-                    <span className="now-price">出價者:</span>
+                    <span className="now-price">出價者:{this.state.CustomerName}</span>
                 </div>
 
                 <form onSubmit={this.bidhandler}  className={this.props.shouldHide ? 'hidden' : ''}>

@@ -41,7 +41,7 @@ io.on('connection', socket => {
 
   //出價接收
   socket.on('bidding',(data) => {
-    console.log("Item ID:",data.id,"| New Bid NT$ ",data.price)
+    console.log("Item ID:",data.id,"| New Bid NT$ ",data.price | "User Name:",data.user )
 
     //出價廣播
     io.sockets.emit('bidding', data)
