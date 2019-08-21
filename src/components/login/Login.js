@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Modal from 'react-modal';
-import Alert from 'react-bootstrap/Alert'
 import './Login.css'
 
 export class Login extends Component {

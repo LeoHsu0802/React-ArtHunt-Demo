@@ -12,6 +12,7 @@ class Body extends Component {
       CustomerName:'',
     }
     this.hanelCusName=this.hanelCusName.bind(this)
+    this.helloCusname=this.helloCusname.bind(this)
   }
   componentDidMount(){
 //使用fetch抓取商品資料，放在Item[]中並顯示在localhost:3000
@@ -28,11 +29,16 @@ class Body extends Component {
     console.log(price,id)
   }
   
-//接收Login的客戶暱稱
+//接收Login的客戶暱稱，之後傳入pricebidding做客戶出價用
   hanelCusName(CusName){
     this.setState({
       CustomerName:CusName
     })
+  }
+
+  //傳送客戶暱稱到app再到header做打招呼
+  helloCusname(){
+    this.props.CustomerName(this.state.CustomerName)
   }
 
   render() {

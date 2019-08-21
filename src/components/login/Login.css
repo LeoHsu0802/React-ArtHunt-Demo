@@ -9,6 +9,7 @@
   }
 
   .loginform {
+    outline: none;
     position: fixed;
     background-color: white;
     margin: 15% 0% 0% 25%;

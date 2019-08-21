@@ -1,9 +1,13 @@
 import React from 'react'
+import './About.css'
 
 function About() {
     return (
-        <div>
-            <h3>About Page</h3>
+        <div className="page">
+            <h1>About</h1>
+            <article>
+                This is a real time bidding website
+            </article>
         </div>
     )
 }

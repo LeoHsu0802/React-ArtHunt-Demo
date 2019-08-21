@@ -16,10 +16,9 @@ export class header extends Component {
                     <Link to='./about' className="router-page-name">
                         <a>About </a>
                     </Link>
-                    <Link to='./Login' className="router-page-name">
-                        <a>Login </a>
+                    <Link to='./Art' className="router-page-name">
+                        <a>Art </a>
                     </Link>
-                    <span>HI</span>
                 </div>
             </div>
         )
