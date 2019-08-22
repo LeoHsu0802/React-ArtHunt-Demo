@@ -3,23 +3,23 @@ import socketIOClient from "socket.io-client";
 import Countdown from 'react-countdown-now';
 import './Pricebidding.css' 
 
-
-
 class Pricebidding extends Component {
     constructor(props) {
         super(props)
-        //endpoint為server端用於處理socket.io事件 price用於在每次出價時setState
+
         this.state = {
             endpoint: "http://localhost:3000/",
             price : this.props.price,
             bidprice : '',
             id : this.props.id,
-            showBidform: true,
-            CustomerName:''
+            enditem: '',
+            CustomerName:'',
+            showForm: true
         }
         this.bidhandler = this.bidhandler.bind(this);
         this.enterprice = this.enterprice.bind(this);
         this.renderer = this.renderer.bind(this);
+        this.handleComplete = this.handleComplete.bind(this)
     }
 
 
@@ -53,21 +53,26 @@ class Pricebidding extends Component {
             console.log('出價需大於現價')
         }   
     }
-    // 倒數計時
+    // 拍賣時間倒數計時
     renderer({ days, hours, minutes, seconds, completed}) {
         if (completed) {
             return <span>此拍賣品已結束</span>
         } else {
-            return <span className="countdown">還剩下{days}日{hours}時{minutes}分{seconds}秒</span>
+            return <span>還剩下{days}日{hours}時{minutes}分{seconds}秒</span>
         }
     }
-
+    // 時間結束關閉出價
+    handleComplete(){
+        this.setState({
+            showForm: false
+        })
+        console.log("YO")
+    }
 
     render() {
+        console.log(this.props.id,this.state.showForm)
         const socket = socketIOClient(this.state.endpoint);
         socket.on('bidding', (data) => {
-            //console.log("this is id:",data.id)
-            //console.log("this is bid price:",data.price)
             //接收最新出價，若商品ID相同則改變該商品最新價格
             if(this.props.id == data.id){
                 this.setState({                
@@ -82,22 +87,27 @@ class Pricebidding extends Component {
          return (
             <div>
                 <div className="now-price">
-                    <Countdown className="countdown" date={this.props.endtime} renderer={this.renderer}/>
+                    <Countdown 
+                    className="countdown" 
+                    date={this.props.endtime} 
+                    renderer={this.renderer}
+                    onComplete={this.handleComplete}
+                    />
                     <br/> 
                     <span id="now-high">NT$ {parseInt(this.state.price).toLocaleString()}</span>
                     <span className="now-price">出價者:{this.state.CustomerName}</span>
                 </div>
 
-                <form onSubmit={this.bidhandler}  className={this.props.shouldHide ? 'hidden' : ''}>
+                {this.state.showForm && <form onSubmit={this.bidhandler}>
                     <input className="bid-price" 
                             value={this.state.bidprice} 
                             type="text"
                             pattern="[0-9]*"
-                            onChange={this.enterprice}>    
+                            onChange={this.enterprice}>
                     </input>
                     <button className="bid-btn" type="submit">出價</button>
                     <span>{this.state.bidprompt}</span>
-                </form>
+                </form>}
             </div>
         )
     }
