@@ -13,8 +13,8 @@ function app() {
               <Header />
               <Switch>
                   <Route exact path="/" component={Body} />
-                  <Route exact path="/about" component={About} />
-                  <Route exact path="/art" component={Art} />
+                  <Route exact path="/about" component={About} />   
+                  <Route exact path="/art" component={Art} />      
               </Switch>
           </div>
       </Router>

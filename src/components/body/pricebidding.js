@@ -14,7 +14,7 @@ class Pricebidding extends Component {
             id : this.props.id,
             enditem: '',
             CustomerName:'',
-            showForm: true
+            showForm: (new Date() < new Date(this.props.endtime)) 
         }
         this.bidhandler = this.bidhandler.bind(this);
         this.enterprice = this.enterprice.bind(this);
@@ -66,10 +66,13 @@ class Pricebidding extends Component {
         this.setState({
             showForm: false
         })
-        console.log("YO")
     }
 
     render() {
+        console.log(typeof(new Date()))
+        console.log(new Date())
+        console.log(typeof(this.props.endtime))
+        console.log(this.props.endtime)
         console.log(this.props.id,this.state.showForm)
         const socket = socketIOClient(this.state.endpoint);
         socket.on('bidding', (data) => {
