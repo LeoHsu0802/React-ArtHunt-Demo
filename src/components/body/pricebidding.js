@@ -14,6 +14,7 @@ class Pricebidding extends Component {
             id : this.props.id,
             enditem: '',
             CustomerName:'',
+            //若商品時間已過期則出價form將不顯示
             showForm: (new Date() < new Date(this.props.endtime)) 
         }
         this.bidhandler = this.bidhandler.bind(this);
