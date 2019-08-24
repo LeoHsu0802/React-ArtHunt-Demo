@@ -1,6 +1,6 @@
 # ReactJs-BiddingWebsite-ArtHunt
 
-This is a real-time bidding webside made by ReactJs、Node.js、Socket.io  
+This is a real-time bidding webside made by ReactJs、Webpack、Node.js、Socket.io  
 
 Here is the real-time bidding display
 ![image](https://github.com/LeoHsu0802/ReactJs-BiddingWebsite-ArtHunt/blob/master/Biddingdisplay.gif?raw=true)
