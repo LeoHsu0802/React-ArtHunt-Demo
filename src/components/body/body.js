@@ -26,7 +26,7 @@ class Body extends Component {
   }
 //接收從child (Pricebidding.js)傳來出價成功的商品 price 與 id
   bidhandler(price,id){
-    console.log(price,id)
+    console.log('最新出價 $',price,'商品ID:',id)
   }
   
 //接收Login的客戶暱稱，之後傳入pricebidding做客戶出價用

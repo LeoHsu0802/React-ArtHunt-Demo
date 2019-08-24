@@ -31,8 +31,7 @@ class Pricebidding extends Component {
         //當客戶輸入出價時 onChange，並在輸入價格低於現價時做出提醒
         
         if(parseInt(this.state.bidprice) < parseInt(this.state.price)){
-            console.log(this.props.id)
-            console.log("出價太低了!")
+            console.log("請輸入大於現價之價格")
         }
     }
     //出價送出判斷處理
@@ -70,11 +69,6 @@ class Pricebidding extends Component {
     }
 
     render() {
-        console.log(typeof(new Date()))
-        console.log(new Date())
-        console.log(typeof(this.props.endtime))
-        console.log(this.props.endtime)
-        console.log(this.props.id,this.state.showForm)
         const socket = socketIOClient(this.state.endpoint);
         socket.on('bidding', (data) => {
             //接收最新出價，若商品ID相同則改變該商品最新價格
