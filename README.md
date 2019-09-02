@@ -11,7 +11,7 @@ Login Page
 Bidding Page
 ![image](https://github.com/LeoHsu0802/ReactJs-BiddingWebsite-ArtHunt/blob/master/view2.PNG)
 
-1.First creat a database(MySQL) for store all item data in it and creat a dataserver connect to MySQ  
+1.First creat a database(MySQL) for store all item data in it and creat a dataserver connect to MySQL    
 
 2.Fetch the data in component and map it to return the items   
 
